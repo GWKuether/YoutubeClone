@@ -37,14 +37,11 @@ def user_comments(request):
         return Response(serializer.data)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['PUT', 'DELETE'])
 @permission_classes([IsAuthenticated])
 def comment_detail(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
-    if request.method == 'GET':
-        serializer = CommentSerializer(comment)
-        return Response(serializer.data)
-    elif request.method == 'PUT':
+    if request.method == 'PUT':
         serializer = CommentSerializer(comment, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
