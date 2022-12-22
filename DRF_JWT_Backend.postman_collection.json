@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "8a1fce88-aab1-4e5b-86ed-2e422b27d5c4",
+		"_postman_id": "0e24080d-46d0-4993-94cb-e5183ea8fbef",
 		"name": "DRF_JWT_Backend",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "24344122"
+		"_exporter_id": "24344215"
 	},
 	"item": [
 		{
@@ -257,7 +257,10 @@
 					"name": "Create_New_Comment(Protected)",
 					"request": {
 						"method": "POST",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				},
@@ -310,7 +313,50 @@
 					"name": "Get_Replies_for_Comment(Protected)",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create_Reply (Protected)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjcyNTk2MDg2LCJpYXQiOjE2NzE3MzIwODYsImp0aSI6IjI2MmI2OWNlODU2MDQxMmE4MzVkOGEzMjNkNzkzZjcxIiwidXNlcl9pZCI6MiwidXNlcm5hbWUiOiJkYW50aGVtYW4iLCJmaXJzdF9uYW1lIjoiRGFuaWVsIn0.jhy-YwwYQk0of84xmfte8Ly9uaHSX2u5HijlNwQ2k4A",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": 1,\r\n        \"text\": \"This is a reply to danthemans comment by POST\",\r\n        \"comment_id\": 1\r\n        \r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/replies/create/",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"replies",
+								"create",
+								""
+							]
+						}
 					},
 					"response": []
 				}
