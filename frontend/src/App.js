@@ -1,4 +1,5 @@
 // General Imports
+import React, { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
@@ -11,14 +12,24 @@ import LandingPage from "./pages/LandingPage/LandingPage";
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
+import SearchBar from "./components/SearchBar/SearchBar";
 
 // Util Imports
 import PrivateRoute from "./utils/PrivateRoute";
 
+
+
 function App() {
+  const [searchInput, setSearchInput] = useState("")
+
+  function getSearchInput(searchInput) {
+    console.log(searchInput)
+    setSearchInput(searchInput) 
+}
+
   return (
     <div>
-      <Navbar />
+      <Navbar getSearchInput={getSearchInput}/>
       <Routes>
         {/* <Route
           path="/"
@@ -28,7 +39,7 @@ function App() {
             </PrivateRoute>
           }
         /> */}
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage searchInput={searchInput}/>} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
