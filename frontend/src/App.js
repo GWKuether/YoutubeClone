@@ -8,6 +8,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
+import MainPage from './pages/MainPage/MainPage';
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -20,7 +21,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 
 function App() {
-  const [searchInput, setSearchInput] = useState("")
+  const [searchInput, setSearchInput] = useState("the band")
 
   function getSearchInput(searchInput) {
     console.log(searchInput)

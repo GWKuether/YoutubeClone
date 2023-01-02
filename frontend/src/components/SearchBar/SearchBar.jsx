@@ -15,7 +15,6 @@ const SearchBar = (props) => {
     function handleSubmit(event){
         event.preventDefault()
         if (searchInput.length > 0) {                 
-            debugger
             console.log(searchInput)
             props.getSearchInput(searchInput)
         }
