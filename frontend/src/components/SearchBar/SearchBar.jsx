@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const SearchBar = (props) => {
     
     const[searchInput, setSearchInput] = useState('')
+    let navigate = useNavigate();
 
     const handleSearch = (event) => {
         event.preventDefault()
@@ -17,6 +19,8 @@ const SearchBar = (props) => {
         if (searchInput.length > 0) {                 
             console.log(searchInput)
             props.getSearchInput(searchInput)
+            navigate('/searchresults')
+            
         }
     }
 

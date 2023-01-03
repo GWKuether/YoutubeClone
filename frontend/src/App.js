@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import LandingPage from "./pages/LandingPage/LandingPage";
 import MainPage from './pages/MainPage/MainPage';
+import VideoDisplay from './pages/VideoDisplay/VideoDisplay';
 
 // Component Imports
 import Navbar from "./components/NavBar/NavBar";
@@ -20,13 +21,20 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 
 
+
 function App() {
   const [searchInput, setSearchInput] = useState("")
+  const [videoId, setVideoId] = useState("")
 
   function getSearchInput(searchInput) {
     console.log(searchInput)
     setSearchInput(searchInput) 
 }
+
+  function getVideoId(videoId) {
+    console.log(videoId)
+    setVideoId(videoId)
+  }
 
   return (
     <div>
@@ -40,9 +48,10 @@ function App() {
             </PrivateRoute>
           }
         /> */}
-        <Route path="/" element={<LandingPage searchInput={searchInput}/>} />
+        <Route path="/searchresults" element={<LandingPage searchInput={searchInput} getVideoId={getVideoId}/>} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/videodisplay" element={<VideoDisplay videoId={videoId} />} />
       </Routes>
       <Footer />
     </div>
