@@ -20,7 +20,7 @@ const LandingPage = (props) => {
   const fetchVideos = async () => {
     console.log(props.searchInput);
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?q=${props.searchInput}&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet`
+      `https://www.googleapis.com/youtube/v3/search?q=${props.searchInput}&key=AIzaSyCj0jkigA6bd_z2EeL86ilb_DhtFvn_CQ4&part=snippet`
     );
     console.log(response.data.items);
     setVideos(response.data.items);

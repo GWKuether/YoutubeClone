@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 const VideoDisplay = (props) => {
   const [videos, setVideos] = useState([]);
   const [videoId, setVideoId] = useState('')
+  const [videoTitle, setVideoTitle] = useState('')
+  const [videoDescription, setVideoDescription] = useState('')
+  const [videoComments, setVideoComments] = useState('')
   let navigate = useNavigate();
 
 
@@ -20,14 +23,39 @@ const VideoDisplay = (props) => {
     fetchVideos();
   }, [videoId]);
 
+  useEffect(() => {
+    fetchVideoDetails();
+  }, [videoId]);
+
+  useEffect(() => {
+    fetchComments();
+  }, [videoId] );
+
   const fetchVideos = async () => {
-    console.log(props.searchInput);
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet`
+      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=AIzaSyCj0jkigA6bd_z2EeL86ilb_DhtFvn_CQ4&part=snippet`
     );
     console.log(response.data.items);
     setVideos(response.data.items);
   };
+
+  
+  const fetchVideoDetails = async () => {
+    let response = await axios.get(
+      `https://www.googleapis.com/youtube/v3/videos?id=${props.videoId}&part=snippet&key=AIzaSyCj0jkigA6bd_z2EeL86ilb_DhtFvn_CQ4`
+    );
+    setVideoTitle(response.data.items[0].snippet?.title)
+    setVideoDescription(response.data.items[0].snippet?.description) 
+  };
+
+
+  const fetchComments = async () => {
+    let response = await axios.get(
+      `http://127.0.0.1:8000/api/comments/${props.videoId}/`
+    );
+    setVideoComments(response.data[0]?.text)
+  };
+
 
   return (
     <div>
@@ -40,6 +68,9 @@ const VideoDisplay = (props) => {
           src={`https://www.youtube.com/embed/${props.videoId}?autoplay=1&origin=http://example.com`}
           frameborder="0"
         ></iframe>
+        <h1>{videoTitle}</h1>
+        <h5>{videoDescription}</h5>
+        <h2>{videoComments}</h2>
       </div>
       <div>
         {videos.map((video) => {
