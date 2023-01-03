@@ -21,7 +21,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 
 function App() {
-  const [searchInput, setSearchInput] = useState("the band")
+  const [searchInput, setSearchInput] = useState("")
 
   function getSearchInput(searchInput) {
     console.log(searchInput)

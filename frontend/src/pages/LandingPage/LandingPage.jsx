@@ -2,10 +2,23 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const LandingPage = (props) => {
-  const [videos,setVideos]=useState([])
+
+  const [videos, setVideos] = useState([]);
+  const [videoId, setVideoId] = useState('')
+
   useEffect(() => {
     fetchVideos();
   }, [props.searchInput]);
+
+  useEffect(() => {
+    setVideoId();
+  }, [videoId]);
+
+  function handleClick(videoId){
+    setVideoId(videoId)
+    console.log(videoId)
+  }
+  
 
   const fetchVideos = async () => {
     debugger;
@@ -13,25 +26,26 @@ const LandingPage = (props) => {
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?q=${props.searchInput}&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet`
     );
-    setVideos(response.data.items)
+    console.log(response.data.items)
+    setVideos(response.data.items);
 
-    {videos.map((video) => {
-      return(
-        video.snippet.thumbnails.default.url
-      )
 
-    })
-    // let resultOne = response.data.items[0].snippet.thumbnails.default.url;
-    // let resultTwo = response.data.items[1].snippet.thumbnails.default.url;
-    // let resultThree = response.data.items[2].snippet.thumbnails.default.url;
-    // let resultFour = response.data.items[3].snippet.thumbnails.default.url;
-    // let resultFive = response.data.items[4].snippet.thumbnails.default.url;
+
   };
 
   return (
-
-
-    <img src = {resultOne} alt='image'></img>
+    <div>
+      {videos.map((video) => {
+        return (
+          <div>
+          <li>
+            <img onClick={()=> handleClick(video.id.videoId)} src={video.snippet.thumbnails.medium.url} alt="image"></img>
+          </li>
+          </div>
+          
+        );
+      })}
+    </div>
 
     // <div>
     //   <iframe
