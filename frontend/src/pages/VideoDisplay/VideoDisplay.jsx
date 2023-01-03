@@ -1,3 +1,4 @@
+import CommentForm from "../../components/CommentForm/CommentForm";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -87,6 +88,10 @@ const VideoDisplay = (props) => {
           );
         })}
       </div>
+      <div style={{'margin-left': '2em', 'margin-bottom': '2em'}}>
+        <CommentForm videoId={props.videoId} fetchComments={fetchComments}/>
+      </div>
+
     </div>
   );
 };

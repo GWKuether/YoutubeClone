@@ -16,6 +16,7 @@ function setUserObject(user) {
     id: user.user_id,
     first_name: user.first_name,
   };
+  
 }
 
 export const AuthProvider = ({ children }) => {
