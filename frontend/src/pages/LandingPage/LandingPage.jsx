@@ -7,23 +7,17 @@ const LandingPage = (props) => {
   const [videoId, setVideoId] = useState("");
   let navigate = useNavigate();
 
-
   useEffect(() => {
     fetchVideos();
   }, [props.searchInput]);
 
-
   function handleClick(videoId) {
     setVideoId(videoId);
-    props.getVideoId(videoId)
-    navigate('/videodisplay')
-    
+    props.getVideoId(videoId);
+    navigate("/videodisplay");
   }
 
-
-
   const fetchVideos = async () => {
-    debugger;
     console.log(props.searchInput);
     let response = await axios.get(
       `https://www.googleapis.com/youtube/v3/search?q=${props.searchInput}&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet`
@@ -34,21 +28,19 @@ const LandingPage = (props) => {
 
   return (
     <div>
-      <div>
-        {videos.map((video) => {
-          return (
-            <div>
-              <li>
-                <img
-                  onClick={() => handleClick(video.id.videoId)}
-                  src={video.snippet?.thumbnails.medium.url}
-                  alt="image"
-                ></img>
-              </li>
-            </div>
-          );
-        })}
-      </div>
+      {videos.map((video) => {
+        return (
+          <div>
+            <li>
+              <img
+                onClick={() => handleClick(video.id.videoId)}
+                src={video.snippet?.thumbnails.medium.url}
+                alt="image"
+              ></img>
+            </li>
+          </div>
+        );
+      })}
     </div>
   );
 };

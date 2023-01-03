@@ -48,10 +48,11 @@ function App() {
             </PrivateRoute>
           }
         /> */}
+        <Route path="/" element={<MainPage />} />
         <Route path="/searchresults" element={<LandingPage searchInput={searchInput} getVideoId={getVideoId}/>} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/videodisplay" element={<VideoDisplay videoId={videoId} />} />
+        <Route path="/videodisplay" element={<VideoDisplay getVideoId={getVideoId} videoId={videoId} />} />
       </Routes>
       <Footer />
     </div>
