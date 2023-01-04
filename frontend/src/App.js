@@ -40,7 +40,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='main-background'>
       <Navbar getSearchInput={getSearchInput}/>
       <Routes>
         {/* <Route

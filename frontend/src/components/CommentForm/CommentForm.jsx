@@ -48,7 +48,7 @@ const CommentForm = (props) => {
             onChange={(event) => setText(event.target.value)}
           />
         </div>
-        <button type="submit">Submit Comment</button>
+        <button type="submit" class="btn btn-dark">Submit</button>
       </form>
     </div>
   );

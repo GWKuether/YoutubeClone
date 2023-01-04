@@ -1,0 +1,10 @@
+.landing-page {
+    display: flex;
+    justify-content: center;
+    padding: 2rem;
+    border-color: black;
+    border-radius: 1rem;
+    flex-wrap: wrap;
+}
+
+/* style={{padding: ".5rem", justifyContent: "center", alignItems: "center"}} */

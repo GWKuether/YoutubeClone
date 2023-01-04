@@ -3,6 +3,8 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./VideoDisplay.css";
+import useAuth from "../../hooks/useAuth";
 
 const VideoDisplay = (props) => {
   const [videos, setVideos] = useState([]);
@@ -10,6 +12,7 @@ const VideoDisplay = (props) => {
   const [videoTitle, setVideoTitle] = useState("");
   const [videoDescription, setVideoDescription] = useState("");
   const [videoComments, setVideoComments] = useState([]);
+  const [user, token] = useAuth();
   let navigate = useNavigate();
 
   function handleClick(videoId) {
@@ -26,7 +29,7 @@ const VideoDisplay = (props) => {
 
   const fetchVideos = async () => {
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=AIzaSyCj0jkigA6bd_z2EeL86ilb_DhtFvn_CQ4&part=snippet`
+      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=AIzaSyDbbfDJ1xa15eAhSLmTCW3L5o9nrpPop24&part=snippet`
     );
     console.log(response.data.items);
     setVideos(response.data.items);
@@ -34,7 +37,7 @@ const VideoDisplay = (props) => {
 
   const fetchVideoDetails = async () => {
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/videos?id=${props.videoId}&part=snippet&key=AIzaSyCj0jkigA6bd_z2EeL86ilb_DhtFvn_CQ4`
+      `https://www.googleapis.com/youtube/v3/videos?id=${props.videoId}&part=snippet&key=AIzaSyDbbfDJ1xa15eAhSLmTCW3L5o9nrpPop24`
     );
     setVideoTitle(response.data.items[0].snippet?.title);
     setVideoDescription(response.data.items[0].snippet?.description);
@@ -51,47 +54,78 @@ const VideoDisplay = (props) => {
   return (
     <div className="container">
       <div className="row">
-        <div className="col-sm">        
-        <div>
-          <iframe
-            id="ytplayer"
-            type="text/html"
-            width="640"
-            height="360"
-            src={`https://www.youtube.com/embed/${props.videoId}?autoplay=1&origin=http://example.com`}
-            frameborder="0"
-          ></iframe>
-          <h1>{videoTitle}</h1>
-          <h5>{videoDescription}</h5>
+        <div className="col-sm">
           <div>
-            {videoComments.map((comment) => {
-              return <p>{comment.text}</p>;
-            })}
+            <iframe
+              style={{
+                boxShadow: "10px 5px 5px #764134",
+                borderRadius: ".75em",
+              }}
+              id="ytplayer"
+              type="text/html"
+              width="640"
+              height="360"
+              src={`https://www.youtube.com/embed/${props.videoId}?autoplay=1&origin=http://example.com`}
+              frameborder="0"
+            ></iframe>
+            <h1
+              style={{
+                color: "white",
+                fontFamily: "fantasy",
+                textShadow: "10px 5px 5px #764134",
+              }}
+            >
+              {videoTitle}
+            </h1>
+            <h5
+              className="overflow-auto description-box"
+              style={{
+                color: "white",
+                backgroundColor: "#000000",
+                borderStyle: "solid",
+                borderWidth: "2px",
+                borderColor: "black",
+              }}
+            >
+              {videoDescription}
+            </h5>
+
+            <div>
+              <div>
+                <CommentForm
+                  videoId={props.videoId}
+                  fetchComments={fetchComments}
+                />
+                <div>
+                  {videoComments.map((comment) => {
+                    return <p>{user.username}{comment.text}</p>;
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
-          <div>
-        <div>
-          <CommentForm videoId={props.videoId} fetchComments={fetchComments} />
-        </div>
-      </div>
-        </div>
         </div>
         <div className="col-sm">
-        <div>
-          {videos.map((video) => {
-            return (
-              <div>
-                <li>
+          <div>
+            {videos.map((video) => {
+              return (
+                <div style={{ padding: ".5em" }}>
                   <img
+                    style={{
+                      borderRadius: ".75em",
+                      borderStyle: "solid",
+                      borderWidth: "2px",
+                      borderColor: "black",
+                      boxShadow: "10px 5px 5px #764134",
+                    }}
                     onClick={() => handleClick(video.id.videoId)}
                     src={video.snippet?.thumbnails.medium.url}
                     alt="thumbnail"
                   ></img>
-                </li>
-              </div>
-            );
-          })}
-
-        </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
@@ -99,8 +133,3 @@ const VideoDisplay = (props) => {
 };
 
 export default VideoDisplay;
-
-
-
-  
-
