@@ -27,7 +27,7 @@ import PrivateRoute from "./utils/PrivateRoute";
 
 function App() {
   const [searchInput, setSearchInput] = useState("")
-  const [videoId, setVideoId] = useState("")
+  const [videoId, setVideoId] = useState("na_izM5zdY8")
 
   function getSearchInput(searchInput) {
     console.log(searchInput)

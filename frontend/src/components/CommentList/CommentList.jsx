@@ -20,7 +20,7 @@ const CommentList = (props) => {
               boxShadow: "10px 5px 5px #764134"
             }}
           >
-            <h4>{user.username} says:</h4>
+            <h4>{user?.username} says:</h4>
             <p>{comment.text}</p>
           </div>
         );
