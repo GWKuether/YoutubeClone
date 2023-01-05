@@ -97,7 +97,7 @@ const VideoDisplay = (props) => {
                   videoId={props.videoId}
                   fetchComments={fetchComments}
                 />
-              <CommentList videoComments={videoComments} />
+              <CommentList fetchComments={fetchComments} videoComments={videoComments} />
               </div>
             </div>
           </div>

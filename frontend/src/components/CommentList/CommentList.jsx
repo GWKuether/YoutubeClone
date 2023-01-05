@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
+import ReplyForm from "../ReplyForm/ReplyForm";
 
 const CommentList = (props) => {
+
   const [user, token] = useAuth();
+  const [reply, setReply] = useState('')
+
+function getReply(newReply){
+    setReply(newReply)  
+}
+
+
 
   return (
     <div>
@@ -22,6 +31,11 @@ const CommentList = (props) => {
           >
             <h4>{user?.username} says:</h4>
             <p>{comment.text}</p>
+            <p>{reply.text}</p>
+            <div>
+
+            </div>
+            < ReplyForm getReply={getReply} fetchComments={props.fetchComments} comment={comment} />
           </div>
         );
       })}
