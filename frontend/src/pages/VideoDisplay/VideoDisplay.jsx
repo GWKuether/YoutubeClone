@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./VideoDisplay.css";
 import useAuth from "../../hooks/useAuth";
+import CommentList from "../../components/CommentList/CommentList";
 
 const VideoDisplay = (props) => {
   const [videos, setVideos] = useState([]);
@@ -96,11 +97,7 @@ const VideoDisplay = (props) => {
                   videoId={props.videoId}
                   fetchComments={fetchComments}
                 />
-                <div>
-                  {videoComments.map((comment) => {
-                    return <p>{user.username}{comment.text}</p>;
-                  })}
-                </div>
+              <CommentList videoComments={videoComments} />
               </div>
             </div>
           </div>
