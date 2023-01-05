@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useAuth from "../../hooks/useAuth";
 import ReplyForm from "../ReplyForm/ReplyForm";
+import Reply from "../Reply/Reply";
 
 const CommentList = (props) => {
 
@@ -31,7 +32,7 @@ function getReply(newReply){
           >
             <h4>{user?.username} says:</h4>
             <p>{comment.text}</p>
-            <p>{reply.text}</p>
+            <Reply comment={comment} />
             <div>
 
             </div>

@@ -30,7 +30,7 @@ const VideoDisplay = (props) => {
 
   const fetchVideos = async () => {
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=AIzaSyDbbfDJ1xa15eAhSLmTCW3L5o9nrpPop24&part=snippet`
+      `https://www.googleapis.com/youtube/v3/search?relatedToVideoId=${props.videoId}&type=video&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18&part=snippet`
     );
     console.log(response.data.items);
     setVideos(response.data.items);
@@ -38,7 +38,7 @@ const VideoDisplay = (props) => {
 
   const fetchVideoDetails = async () => {
     let response = await axios.get(
-      `https://www.googleapis.com/youtube/v3/videos?id=${props.videoId}&part=snippet&key=AIzaSyDbbfDJ1xa15eAhSLmTCW3L5o9nrpPop24`
+      `https://www.googleapis.com/youtube/v3/videos?id=${props.videoId}&part=snippet&key=AIzaSyADwfFOa8oCMWoWfKuESBZmEFDTEd8mB18`
     );
     setVideoTitle(response.data.items[0].snippet?.title);
     setVideoDescription(response.data.items[0].snippet?.description);
@@ -49,7 +49,6 @@ const VideoDisplay = (props) => {
       `http://127.0.0.1:8000/api/comments/${props.videoId}/`
     );
     setVideoComments(response.data);
-    console.log(videoComments);
   };
 
   return (

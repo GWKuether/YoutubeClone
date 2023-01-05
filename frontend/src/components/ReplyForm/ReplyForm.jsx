@@ -15,7 +15,6 @@ const ReplyForm = (props) => {
         text: text,
         user_id: user.id,
       };
-      debugger
       console.log(newReply);
       addNewReply(newReply);
     }

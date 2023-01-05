@@ -57,7 +57,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/videodisplay" element={<VideoDisplay getVideoId={getVideoId} videoId={videoId} />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
